@@ -1,7 +1,10 @@
+var cityVar;
+var p1="https://api.weatherbit.io/v2.0/current?&city=";
+var p2="&key=0bf451f91ff64705bc45ce2a4c766587&include=minutely";
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=35.5&lon=-78.5",
+	"url": cityVar,
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
@@ -9,6 +12,13 @@ const settings = {
 	}
 };
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
+$("#search_btn").on("click",function(event){
+    console.log( $("#searchbox").val());
+    cityVar=p1+ $("#searchbox").val()+p2;
+    
+    $.ajax(cityVar).done(function (response) {
+        console.log(response);
+
+    });
+    console.log(cityVar);
 });
